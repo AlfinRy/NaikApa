@@ -7,3 +7,4 @@ dev.log
 .env
 .env.*
 docs
+data/
