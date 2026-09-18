@@ -8,3 +8,4 @@ dev.log
 .env.*
 docs
 data/
+public/network.json
