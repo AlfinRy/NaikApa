@@ -1,0 +1,125 @@
+{
+  "title": "Pilih dunia visual NaikApa",
+  "question": "Dadu menugaskan 'Papan Keberangkatan Terminal'. Pertahankan, pilih alternatif, atau roll ulang.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Papan Keberangkatan Terminal",
+      "kicker": "THE ROLL",
+      "lineage": "papan tujuan bis di terminal Pulogebang / Kampung Rambutan / Blok M",
+      "thesis": "Landing page adalah papan keberangkatan digital yang menjawab 'naik apa?' lewat baris rute yang tegak, tegas, dan bisa dipindai sambil berdiri satu kaki di trotoar.",
+      "palette": ["#14211c", "#f2ecdc", "#f2b705", "#d64526", "#2f9e63"],
+      "materials": ["cat papan enamel", "huruf kapital condens", "rel baja horizontal", "split-flap"],
+      "viewport": "Papan besar 'NAIK APA?' dengan huruf kapgal tercatat, di bawahnya baris-baris rute seragam (nomor koridor, tujuan, via, moda) dan tombol tiket 'Buka Peta' — mobile-first, baris menumpuk vertikal.",
+      "risk": "Terasa seperti poster retro kalau hurufnya ditata ragu-ragu dan baris rutenya tidak benar-benar seragam.",
+      "raised": [
+        { "from": "hypercard", "raise": "Kontrol punya state tertekan yang taktil: tombol tercetak terbalik tinta saat ditekan, seperti tombol cat yang sungguh turun." },
+        { "from": "darkroom", "raise": "Satu momen reveal terorkestrasi untuk jawaban perjalanan — hasil trip muncul sebagai satu kemunculan utuh, bukan animasi tersebar." },
+        { "from": "curved-crease", "raise": "Satu rel baja horizontal memerintah komposisi seluruh halaman — bukan kartu-kartu mengambang yang tersebar." },
+        { "from": "botanical-folio", "raise": "Setiap baris rute beranatomi dan skala identik sehingga membandingkan rute secepat membaca papan keberangkatan sungguhan." },
+        { "from": "kiln-glaze", "raise": "State baris bergradasi seperti lapisan tinta: idle tipis, hover lebih pekat, terpilih penuh — bukan sekadar ubah opasitas." },
+        { "from": "gyaru-magazine", "raise": "Label call-out bergaris penunjuk untuk kepribadian ('cari nama halte di sini →') tanpa menambah kebisingan." }
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Peta Koridor di Dinding Halte",
+      "kicker": "IMPECCABLE'S PICK",
+      "lineage": "poster diagram rute yang tertempel di dinding halte busway",
+      "thesis": "Diagram rute sebagai halaman: pita koridor berwarna bersilang, halte sebagai titik, dan perjalanan sebagai jalur yang menyala.",
+      "palette": ["#f6f3ea", "#20242b", "#e4572e", "#2f9e63", "#f2b705"],
+      "materials": ["pita koridor berwarna", "titik halte", "garis 45 derajat", "legenda"],
+      "viewport": "Hero berupa diagram koridor hidup yang membentang, nama halte menempel di titik-titiknya, CTA 'Rencanakan Perjalanan' sebagai legenda.",
+      "risk": "Ini arah paling sering dipakai produk transit — familiar dan efektif, tapi paling mudah tak terbedakan dari Moovit/Google Transit."
+    },
+    {
+      "id": "challenger-botanical-folio",
+      "label": "Folio Botani Skala Tetap",
+      "verdict": "competitive",
+      "lineage": "lembar folio botani: lima pelat skala identik pada satu garis dasar",
+      "thesis": "Setiap rute sebagai pelat bersegi dengan anatomi dan skala persis sama, sejajar pada satu baseline untuk dibandingkan seperti pelat tumbuhan.",
+      "palette": ["#f5efdd", "#3a3a34", "#4a7c59", "#b3392b"],
+      "materials": ["garis hairline sepia", "kapsul small-caps", "label graphite"],
+      "viewport": "Deretan pelat rute skala tetap dengan takarim terukur dan keterangan berperingkat di bawahnya.",
+      "case": "Menang di kejelasan perbandingan rute (pelat skala tetap), kalah jauh di identifikasi penumpang Jakarta yang tak hidup di dunia folio.",
+      "risk": "Tenang dan teratur, tapi identifikasinya rendah untuk komuter.",
+      "hero": "https://impeccable.style/worlds/cards/editorial-sequence-montage-botanical-folio-season-hero.webp"
+    },
+    {
+      "id": "challenger-hypercard",
+      "label": "Stack Kartu HyperCard",
+      "verdict": "declined",
+      "lineage": "shoebox kartu hitam-putih HyperCard yang saling terhubung tombol",
+      "thesis": "Setiap layar kartu satu-bit yang tersambung tombol cat, browse dan mengarang satu objek.",
+      "palette": ["#000000", "#ffffff"],
+      "materials": ["stipple dither", "tepi tangan", "inversi tekan"],
+      "viewport": "Kartu-kartu segi empat tetap dengan tombol tergambar yang membalik tinta saat ditekan.",
+      "case": "Monokrom satu-bit melanggar larangan non-monochrome Anda dan dunia ini asing bagi komuter Indonesia.",
+      "kept": "Kontrol taktil dengan state tertekan yang jujur.",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-hypercard-stack-shoebox-hero.webp"
+    },
+    {
+      "id": "challenger-darkroom",
+      "label": "Darkroom Cahaya Amber",
+      "verdict": "declined",
+      "lineage": "bilik cetak foto di bawah safelight amber",
+      "thesis": "Jawaban perjalanan 'tercetak' perlahan seperti foto yang muncul di bak developer.",
+      "palette": ["#2b1a08", "#d98e2b", "#c9c2b8"],
+      "materials": ["safelight amber", "garis pensil lemak", "strip uji berjenjang"],
+      "viewport": "Stasiun kerja linear: komposisi, ekspos, cetak — jawaban muncul di bak.",
+      "case": "Identifikasi rendah dan metafora 'lambat & tak bisa dibatalkan' bertentangan dengan produk yang harus menjawab cepat.",
+      "kept": "Disiplin satu reveal terorkestrasi untuk momen jawaban.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-darkroom-safelight-bay-hero.webp"
+    },
+    {
+      "id": "challenger-curved-crease",
+      "label": "Kerang Lipat Lengkung",
+      "verdict": "declined",
+      "lineage": "lembar melingkar yang terlipat satu lengkung menjadi cangkang kaku",
+      "thesis": "Satu busur kompas sebagai lipatan yang menegakkan seluruh halaman tanpa sisi lurus.",
+      "palette": ["#f3eee2", "#2b2b28", "#8a8578"],
+      "materials": ["kertas kapas", "busur grafit", "bayangan kompas"],
+      "viewport": "Layout yang diperintah sapuan satu busur, figur bernomor seperti pelat geometri.",
+      "case": "Indah tapi abstrak — tidak ada resonansi dunia komuter, dan klaim produk sulit menempel.",
+      "kept": "Satu garis komposisi besar menguasai halaman, bukan grid kartu mengambang.",
+      "hero": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-curved-crease-shell-hero.webp"
+    },
+    {
+      "id": "challenger-kiln-glaze",
+      "label": "Rak Glasir Kobalt",
+      "verdict": "declined",
+      "lineage": "rak tanur dengan cangkir glasir yang mengalir dan membeku",
+      "thesis": "Rute sebagai glasir: kental, mengalir, berhenti — state yang punya arti material.",
+      "palette": ["#f4f1ea", "#1e3a8a", "#3b6fd4"],
+      "materials": ["glasir kobalt", "numeral batch mono", "rak kapur"],
+      "viewport": "Baris cangkir di rak, kartu resep bernomor di sampingnya, gravitasi sebagai urutan baca.",
+      "case": "Dunia keramik tidak dikenali penumpang, dan kobalt-nya condong ke biru yang ingin Anda hindari sebagai identitas.",
+      "kept": "State bergradasi material, bukan sekadar opasitas.",
+      "hero": "https://impeccable.style/worlds/cards/clay-ceramics-fracture-glaze-river-shelf-hero.webp"
+    },
+    {
+      "id": "challenger-gyaru-magazine",
+      "label": "Majalan Street-Fashion Padat",
+      "verdict": "declined",
+      "lineage": "spread majalah gyaru yang sesak: figur potongan, label harga tulisan tangan, headline berbingkai kilau",
+      "thesis": "Halaman sebagai kerumunan: satu figur terangkat ke depan, sisanya tetap bertumpuk di belakang dengan call-out bertanda tangan.",
+      "palette": ["#ff4f9a", "#ffd23f", "#12b886", "#ffffff"],
+      "materials": ["outline berlapis", "shingle potongan", "garis penunjuk tulisan tangan"],
+      "viewport": "Spread sesak figur dengan call-out harga di setiap item dan headline berbingkai berlapis.",
+      "case": "Energinya maksimal dan identifikasi street-nya kuat untuk segmen muda, tapi kejelasan produk kalah oleh kebisingan — dan Anda minta animasi secukupnya.",
+      "kept": "Call-out bergaris penunjuk untuk kepribadian salinan UI.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-gyaru-magazine-density-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "steer": true,
+  "canon": true,
+  "canonCard": {
+    "label": "Standar kategori",
+    "thesis": "Tata letak yang pengunjung harapkan dari produk transit, dieksekusi tanpa cela.",
+    "palette": ["#ffffff", "#111827", "#2563eb"],
+    "materials": ["grid bersih", "kartu membulat", "peta sebagai hero"],
+    "viewport": "Hero peta besar dengan search bar mengambang dan kartu fitur di bawahnya.",
+    "risk": "Sengaja tak terbedakan dari kompetisi."
+  }
+}

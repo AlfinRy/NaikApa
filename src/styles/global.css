@@ -1,0 +1,610 @@
+/* NaikApa — world: poster diagram rute halte (cream paper + ink + ribbon koridor) */
+
+:root {
+  --paper: #f6f3ea;
+  --paper-deep: #efe9da;
+  --ink: #20242b;
+  --ink-soft: #3d4450;
+  --vermilion: #e4572e;
+  --green: #2f9e63;
+  --yellow: #f2b705;
+  --violet: #7c5cbf;
+  --teal: #1f8a8c;
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-body: 'Atkinson Hyperlegible', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--vermilion);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin: 0;
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- layout shell ---------- */
+
+.shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: min(72rem, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+/* ---------- header ---------- */
+
+.site-header {
+  border-bottom: 2px solid var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--paper);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.65rem;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.wordmark svg {
+  color: var(--vermilion);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+}
+
+.nav-link:hover {
+  background: var(--paper-deep);
+}
+
+/* ---------- buttons: taktil, tekan = invert ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    transform 80ms ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.55rem 1.1rem;
+  font-size: 0.95rem;
+}
+
+.btn-ink:hover {
+  background: var(--vermilion);
+  border-color: var(--ink);
+}
+
+.btn-ink:active {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.btn-hero {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.9rem 1.6rem;
+  font-size: 1.1rem;
+}
+
+.btn-hero:hover {
+  background: var(--vermilion);
+}
+
+.btn-hero:active {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+@media (max-width: 560px) {
+  .btn-hero {
+    width: 100%;
+  }
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding-block: 2.5rem 2rem;
+}
+
+.hero-grid {
+  display: grid;
+  gap: 1.8rem;
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 9vw, 5.2rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  max-width: 14ch;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--vermilion);
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 42ch;
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-actions .quiet-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+/* ---------- diagram koridor ---------- */
+
+.diagram-wrap {
+  margin-top: 0.4rem;
+}
+
+.diagram-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.diagram-scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-soft) transparent;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  padding-block: 0.5rem;
+}
+
+.diagram-track {
+  position: relative;
+  min-width: 660px;
+  height: 150px;
+}
+
+.diagram-track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 7px;
+  transform: translateY(-50%);
+  background: var(--vermilion);
+  border-radius: 4px;
+}
+
+/* pita koridor lain yang bersilang di belakang */
+.ribbon-cross {
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  height: 3px;
+  border-radius: 2px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.ribbon-cross.green {
+  background: var(--green);
+  top: 34%;
+  transform: rotate(-2.6deg);
+}
+
+.ribbon-cross.violet {
+  background: var(--violet);
+  top: 66%;
+  transform: rotate(2.1deg);
+}
+
+/* segmen yang "ditempuh" saat halte dipilih */
+.travel {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 7px;
+  width: 100%;
+  background: var(--ink);
+  border-radius: 4px;
+  transform-origin: left center;
+  transform: translateY(-50%) scaleX(0);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* halte */
+.stop {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: var(--ink);
+}
+
+.stop-dot {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  transition:
+    background-color 200ms ease,
+    transform 200ms ease;
+}
+
+.stop.lit .stop-dot {
+  background: var(--vermilion);
+  transform: scale(1.18);
+}
+
+.stop:hover .stop-dot {
+  transform: scale(1.18);
+}
+
+.stop-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  background: var(--paper);
+  padding: 0 0.25rem;
+  border-radius: 3px;
+}
+
+.stop.above {
+  flex-direction: column-reverse;
+}
+
+.stop.above .stop-label {
+  margin-top: -0.15rem;
+}
+
+.stop.below .stop-label {
+  margin-bottom: -0.15rem;
+}
+
+/* kartu info halte terpilih */
+.stop-card {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: #fffdf6;
+  padding: 0.7rem 1rem;
+  box-shadow: 4px 6px 18px rgba(32, 36, 43, 0.16);
+}
+
+.stop-card strong {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.stop-card .route-chips {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.chip {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.72rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+}
+
+.chip.k1 {
+  background: var(--vermilion);
+  color: var(--paper);
+}
+
+.chip.k5 {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.chip.k6 {
+  background: var(--green);
+  color: var(--paper);
+}
+
+.stop-card .demo-note {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-left: auto;
+}
+
+.swipe-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: 0.45rem;
+}
+
+/* ---------- legend cara pakai ---------- */
+
+.legend-section {
+  padding-block: 3rem 2.5rem;
+  border-top: 2px solid var(--ink);
+  margin-top: 2.5rem;
+}
+
+.legend-section h2 {
+  font-size: clamp(1.7rem, 5vw, 2.6rem);
+  margin-bottom: 1.8rem;
+}
+
+.legend-grid {
+  display: grid;
+  gap: 1.8rem 3rem;
+}
+
+@media (min-width: 780px) {
+  .legend-grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+}
+
+.legend-item {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.legend-item .glyph {
+  flex: none;
+  margin-top: 0.15rem;
+}
+
+.legend-item h3 {
+  font-size: 1.02rem;
+  letter-spacing: 0;
+  margin-bottom: 0.3rem;
+}
+
+.legend-item p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  font-size: 0.95rem;
+  max-width: 34ch;
+}
+
+/* ---------- scale bar ---------- */
+
+.scale-section {
+  border-top: 2px solid var(--ink);
+  padding-block: 2.2rem 3rem;
+}
+
+.scale-bar {
+  position: relative;
+  height: 2px;
+  background: var(--ink);
+  margin: 1.6rem 0 0.5rem;
+}
+
+.scale-bar::before,
+.scale-bar::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  width: 2px;
+  height: 12px;
+  background: var(--ink);
+}
+
+.scale-bar::after {
+  right: 0;
+}
+
+.scale-marks {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.scale-mark strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  letter-spacing: -0.02em;
+}
+
+.scale-mark span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ---------- placeholder /peta ---------- */
+
+.placeholder-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 3rem 1.25rem;
+}
+
+.placeholder-main svg {
+  color: var(--vermilion);
+}
+
+.placeholder-main h1 {
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.placeholder-main p {
+  color: var(--ink-soft);
+  max-width: 38ch;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.placeholder-main .btn {
+  margin-top: 0.5rem;
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  margin-top: auto;
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: 1.6rem;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem 2rem;
+}
+
+.site-footer .wordmark {
+  color: var(--paper);
+  font-size: 1.1rem;
+}
+
+.site-footer small {
+  display: block;
+  color: #c9c4b4;
+  line-height: 1.5;
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--vermilion);
+}

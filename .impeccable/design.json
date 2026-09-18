@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-18T15:10:00+07:00",
+  "title": "Design System: NaikApa",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Vermilion Papan", "canonical": "#e4572e", "tonalRamp": ["#5c1c0c", "#8a2a13", "#b83c1f", "#e4572e", "#ea6f4f", "#f09a7f", "#f6c1ad", "#fadfd3"] },
+      "neutral-bg": { "role": "neutral", "displayName": "Kertas Poster", "canonical": "#f6f3ea", "tonalRamp": ["#3a382f", "#5f5c4f", "#847f6f", "#a9a390", "#cdc7b2", "#e0dbca", "#f6f3ea", "#fbf9f3"] },
+      "ink": { "role": "neutral", "displayName": "Tinta", "canonical": "#20242b", "tonalRamp": ["#0d0f13", "#20242b", "#3a3f49", "#555b67", "#707784", "#8b93a0", "#aeb3bd", "#d2d5da"] },
+      "ribbon-green": { "role": "secondary", "displayName": "Hijau Pita", "canonical": "#2f9e63", "tonalRamp": ["#0f3d26", "#1a5c3a", "#257d4f", "#2f9e63", "#57b482", "#85caa4", "#b3dfc6", "#d9f0e4"] },
+      "ribbon-yellow": { "role": "secondary", "displayName": "Kuning Papan", "canonical": "#f2b705", "tonalRamp": ["#5f4a02", "#8d6d03", "#ba9204", "#f2b705", "#f5c638", "#f8d56b", "#fbe4a4", "#fdf2d4"] },
+      "ribbon-violet": { "role": "secondary", "displayName": "Ungu Pita", "canonical": "#7c5cbf", "tonalRamp": ["#2f2349", "#47346c", "#5f4493", "#7c5cbf", "#967dd0", "#b0a0e0", "#cac2ec", "#e3dff7"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display Papan", "purpose": "Judul hero saja, maks ~14ch." },
+      "headline": { "displayName": "Headline", "purpose": "Judul section." },
+      "body": { "displayName": "Atkinson Body", "purpose": "Copy baca; aksesibilitas tinggi untuk publik." },
+      "label": { "displayName": "Label Halte", "purpose": "Nama halte, tag diagram, chip rute." }
+    },
+    "shadows": [
+      { "name": "stop-card", "value": "4px 6px 18px rgba(32,36,43,0.16)", "purpose": "Kartu info halte terpilih — satu-satunya bayangan di sistem." }
+    ],
+    "motion": [
+      { "name": "travel-reveal", "value": "transform 420ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Momen tunggal: segmen perjalanan scaleX saat halte dipilih." },
+      { "name": "stop-stagger", "value": "transition-delay 45ms per halte", "purpose": "Titik halte menyala berurutan mengikuti segmen." },
+      { "name": "state-ease", "value": "background-color/color 120ms ease, transform 80ms ease", "purpose": "State tombol & titik — bukan animasi masuk." }
+    ],
+    "breakpoints": [
+      { "name": "cta-full", "value": "560px", "purpose": "Hero CTA full-width di bawah ini." },
+      { "name": "legend-3col", "value": "780px", "purpose": "Grid legenda 3 kolom di atas ini." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Hero Button",
+      "kind": "button",
+      "refersTo": "button-hero",
+      "description": "CTA utama halaman — taktil, ditekan membalik tinta.",
+      "html": "<a class=\"ds-btn-hero\" href=\"#\">Buka Peta <svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a>",
+      "css": ".ds-btn-hero { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-size: 1.1rem; text-decoration: none; color: #f6f3ea; background: #20242b; border: 2px solid #20242b; border-radius: 999px; padding: 0.9rem 1.6rem; cursor: pointer; transition: background-color 120ms ease, color 120ms ease, transform 80ms ease; } .ds-btn-hero:hover { background: #e4572e; } .ds-btn-hero:active { background: #f6f3ea; color: #20242b; transform: translateY(1px); }"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Tombol sekunder pill tinta di nav.",
+      "html": "<a class=\"ds-btn-ink\" href=\"#\">Buka Peta</a>",
+      "css": ".ds-btn-ink { display: inline-flex; align-items: center; font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-size: 0.95rem; text-decoration: none; color: #f6f3ea; background: #20242b; border: 2px solid #20242b; border-radius: 999px; padding: 0.55rem 1.1rem; cursor: pointer; transition: background-color 120ms ease, color 120ms ease; } .ds-btn-ink:hover { background: #e4572e; } .ds-btn-ink:active { background: #f6f3ea; color: #20242b; }"
+    },
+    {
+      "name": "Route Chip",
+      "kind": "chip",
+      "refersTo": "chip-route",
+      "description": "Chip koridor — warna rute sebagai data.",
+      "html": "<span class=\"ds-chip\">K1</span>",
+      "css": ".ds-chip { font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; font-size: 0.72rem; padding: 0.18rem 0.5rem; border-radius: 999px; border: 2px solid #20242b; background: #e4572e; color: #f6f3ea; }"
+    },
+    {
+      "name": "Diagram Tag",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Label koridor kuning di atas diagram.",
+      "html": "<span class=\"ds-tag\">Koridor 1 — Blok M ↔ Kota</span>",
+      "css": ".ds-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: #f2b705; color: #20242b; border: 2px solid #20242b; border-radius: 6px; font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.6rem; }"
+    },
+    {
+      "name": "Stop Card",
+      "kind": "card",
+      "refersTo": "",
+      "description": "Popover info halte terpilih — satu-satunya bayangan.",
+      "html": "<div class=\"ds-stopcard\"><strong>Dukuh Atas</strong><span class=\"ds-chip\">K1</span><small>demo — data GTFS resmi</small></div>",
+      "css": ".ds-stopcard { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; border: 2px solid #20242b; border-radius: 10px; background: #fffdf6; padding: 0.7rem 1rem; box-shadow: 4px 6px 18px rgba(32,36,43,0.16); } .ds-stopcard strong { font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; font-size: 1.05rem; } .ds-stopcard small { color: #3d4450; font-size: 0.78rem; margin-left: auto; } .ds-stopcard .ds-chip { font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; font-size: 0.72rem; padding: 0.18rem 0.5rem; border-radius: 999px; border: 2px solid #20242b; background: #e4572e; color: #f6f3ea; }"
+    },
+    {
+      "name": "Wordmark",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "Logo wordmark + ikon signpost vermilion.",
+      "html": "<span class=\"ds-wordmark\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" color=\"#e4572e\" aria-hidden=\"true\"><path d=\"M12 22V2\"/><path d=\"m8 6 4-4 4 4\"/><path d=\"m4 14 4-4 4 4\"/><path d=\"m12 14 4-4 4 4\"/></svg>NaikApa</span>",
+      "css": ".ds-wordmark { display: inline-flex; align-items: center; gap: 0.45rem; font-family: 'Archivo', system-ui, sans-serif; font-weight: 900; font-size: 1.35rem; letter-spacing: -0.03em; color: #20242b; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Poster Diagram Halte yang Hidup",
+    "overview": "NaikApa tampil sebagai poster diagram rute yang tertempel di dinding halte, lalu bangun dan bekerja. Medannya kertas poster hangat, garisnya tinta gelap tegas, dan warna koridor hadir sebagai data rute — bukan dekorasi. Diagram, legenda, dan skala batang adalah struktur aslinya; bukan kumpulan kartu seragam. Satu momen motion authored per halaman; sisanya state taktil yang membalik tinta saat ditekan.",
+    "keyCharacteristics": [
+      "Cream paper + tinta gelap; aksen vermilion tunggal untuk aksi utama",
+      "Warna koridor hanya untuk data rute & pita diagram",
+      "Diagram adalah komponen first-class",
+      "Mobile-first; diagram digeser (swipe), bukan dikecilkan",
+      "Icon lucide, tanpa emoji"
+    ],
+    "rules": [
+      { "name": "The Data-Not-Decoration Rule", "body": "Warna koridor hanya terikat objek rute; tidak pernah warna section/heading/background dekoratif.", "section": "colors" },
+      { "name": "The No-TransJakarta-Blue Rule", "body": "Biru TransJakarta bukan identitas — produk netral moda.", "section": "colors" },
+      { "name": "The No-Eyebrow Rule", "body": "Heading bicara sendiri; tanpa kicker/eyebrow.", "section": "typography" },
+      { "name": "The Flat-Poster Rule", "body": "Tanpa bayangan kecuali elemen yang mengangkat dari poster; tanpa hard-offset shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do pakai warna koridor hanya terikat data rute (pita/chip/titik).",
+      "Do pisah section dengan garis tinta 2px, bukan bayangan kartu.",
+      "Do buat diagram bisa digeser di mobile (min-width 660px + mask fade).",
+      "Do beri label 'demo' pada data peraga yang belum final."
+    ],
+    "donts": [
+      "Don't pakai biru TransJakarta sebagai identitas brand.",
+      "Don't pakai emoji — icon selalu dari lucide.",
+      "Don't tambah animasi selain momen tunggal yang authored.",
+      "Don't buat kartu fitur seragam sebagai struktur halaman.",
+      "Don't pakai kicker/eyebrow di atas heading."
+    ]
+  }
+}
