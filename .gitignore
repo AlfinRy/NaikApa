@@ -2,6 +2,7 @@ node_modules
 dist
 .output
 .vite
+.tanstack
 dev.log
 *.log
 .env

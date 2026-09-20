@@ -1,6 +1,7 @@
 import {
   HeadContent,
   Outlet,
+  Scripts,
   createRootRoute,
 } from '@tanstack/react-router'
 
@@ -17,6 +18,11 @@ export const Route = createRootRoute({
       },
     ],
     links: [
+      {
+        rel: 'icon',
+        href: '/favicon.svg',
+        type: 'image/svg+xml',
+      },
       {
         rel: 'preconnect',
         href: 'https://fonts.googleapis.com',
@@ -37,9 +43,14 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <>
-      <HeadContent />
-      <Outlet />
-    </>
+    <html lang="id">
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        <Outlet />
+        <Scripts />
+      </body>
+    </html>
   )
 }

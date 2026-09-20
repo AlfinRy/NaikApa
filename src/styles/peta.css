@@ -1,0 +1,259 @@
+/* NaikApa — halaman peta (world: poster diagram halte) */
+
+.peta-page {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+/* ---------- bar atas ---------- */
+
+.peta-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.9rem;
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
+  z-index: 30;
+}
+
+.peta-topbar .wordmark {
+  font-size: 1.05rem;
+}
+
+.peta-topbar .wordmark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.peta-topbar .spacer {
+  flex: 1;
+}
+
+.peta-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  color: var(--ink);
+}
+
+.peta-link:hover {
+  background: var(--paper-deep);
+}
+
+/* ---------- wadah peta ---------- */
+
+.peta-main {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.peta-map {
+  position: absolute;
+  inset: 0;
+  background: var(--paper-deep);
+}
+
+.peta-map .leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: var(--paper-deep);
+  font-family: var(--font-body);
+}
+
+/* ---------- panel kontrol ---------- */
+
+.peta-panel {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: min(20rem, calc(100% - 1.6rem));
+}
+
+.peta-card {
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--paper);
+  box-shadow: 4px 6px 18px rgba(32, 36, 43, 0.16);
+  padding: 0.7rem 0.85rem;
+}
+
+.peta-card h2 {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.peta-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.35rem 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.peta-toggle input {
+  appearance: none;
+  width: 2.5rem;
+  height: 1.35rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  position: relative;
+  cursor: pointer;
+  flex: none;
+  margin: 0;
+  transition: background-color 120ms ease;
+}
+
+.peta-toggle input::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  background: var(--ink);
+  transition: transform 120ms ease, background-color 120ms ease;
+}
+
+.peta-toggle input:checked {
+  background: var(--green);
+}
+
+.peta-toggle input:checked::after {
+  transform: translateX(1.05rem);
+  background: var(--paper);
+}
+
+.peta-toggle input:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.peta-toggle .swatch {
+  width: 1.1rem;
+  height: 0.5rem;
+  border-radius: 3px;
+  flex: none;
+}
+
+.peta-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--paper);
+  z-index: 45;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* ---------- popup halte ---------- */
+
+.peta-popup {
+  font-family: var(--font-body);
+}
+
+.peta-popup .popup-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  margin: 0 0 0.4rem;
+  padding-right: 1rem;
+}
+
+.peta-popup .route-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  max-width: 15rem;
+}
+
+.peta-popup .chip {
+  font-size: 0.66rem;
+  border-width: 1.5px;
+  padding: 0.12rem 0.42rem;
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  box-shadow: 4px 6px 18px rgba(32, 36, 43, 0.16);
+}
+
+.leaflet-popup-tip {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-top: none;
+}
+
+.leaflet-popup-close-button {
+  color: var(--ink) !important;
+  font-weight: 700;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: var(--vermilion) !important;
+}
+
+/* ---------- footer kecil ---------- */
+
+.peta-credit {
+  position: absolute;
+  left: 0.8rem;
+  bottom: 0.8rem;
+  z-index: 40;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+  max-width: 60vw;
+}
+
+@media (max-width: 640px) {
+  .peta-panel {
+    top: auto;
+    bottom: 3.2rem;
+    right: 0.6rem;
+    left: 0.6rem;
+    max-width: none;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .peta-card {
+    flex: 1;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .peta-card h2 {
+    margin-bottom: 0.3rem;
+  }
+
+  .peta-credit {
+    bottom: 0.6rem;
+  }
+}
