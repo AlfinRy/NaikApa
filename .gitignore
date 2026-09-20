@@ -10,3 +10,6 @@ dev.log
 docs
 data/
 public/network.json
+home*.html
+peta*.html
+ssr*.html
