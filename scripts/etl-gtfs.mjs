@@ -7,6 +7,7 @@
  *               data/gtfs/     (di-extract otomatis jika belum ada)
  * Output      : data/naikapa.db        (SQLite lengkap, semua layanan)
  *               public/network.json    (jaringan untuk peta: BRT + Mikrotrans)
+ *               public/planner.json    (graph trip planner: pola halte per rute)
  *
  * Jalankan    : node scripts/etl-gtfs.mjs
  */
@@ -21,6 +22,7 @@ const GTFS_DIR = join(DATA, 'gtfs')
 const ZIP = join(DATA, 'gtfs.zip')
 const DB_PATH = join(DATA, 'naikapa.db')
 const OUT_JSON = join(ROOT, 'public', 'network.json')
+const OUT_PLANNER = join(ROOT, 'public', 'planner.json')
 
 const FEED_URL = 'https://gtfs.transjakarta.co.id/files/file_gtfs.zip'
 
@@ -107,6 +109,7 @@ const stops = readTable('stops')
 const trips = readTable('trips')
 const stopTimes = readTable('stop_times')
 const shapes = readTable('shapes')
+const frequencies = readTable('frequencies')
 console.log(`   ${routes.length} rute, ${stops.length} stops, ${trips.length} trips, ${stopTimes.length} stop_times, ${shapes.length} shape pts`)
 
 function classify(desc) {
@@ -245,4 +248,73 @@ mkdirSync(join(ROOT, 'public'), { recursive: true })
 writeFileSync(OUT_JSON, JSON.stringify(network))
 console.log(`✅ ${OUT_JSON}`)
 console.log(`   ${netRoutes.length} rute peta, ${netStops.length} halte, ${network.counts.linePoints} titik garis`)
+
+/* --- graph trip planner: pola urutan halte per rute (BRT + MIKRO) --- */
+console.log('🧭 bangun planner.json …')
+
+// headway per trip dari frequencies.txt (detik)
+const tripHeadway = new Map()
+for (const f of frequencies) {
+  const secs = +f.headway_secs
+  if (secs > 0) tripHeadway.set(f.trip_id, Math.min(secs, 1800))
+}
+
+// urutan halte per trip
+const stByTrip = new Map()
+for (const st of stopTimes) {
+  if (!stByTrip.has(st.trip_id)) stByTrip.set(st.trip_id, [])
+  stByTrip.get(st.trip_id).push([+st.stop_sequence, st.stop_id])
+}
+
+// planner pakai stops idem network.json (sudah difilter BRT+MIKRO)
+const plannerStopIdx = new Map(netStops.map((s, i) => [s.id, i]))
+
+// pola unik per rute
+const patternsByRoute = new Map()
+for (const [tripId, seqRaw] of stByTrip) {
+  const rid = tripRoute.get(tripId)
+  if (!rid) continue
+  const r = routeById.get(rid)
+  if (!r) continue
+  const cls = classify(r.route_desc)
+  if (cls !== 'BRT' && cls !== 'MIKRO') continue
+  const seq = seqRaw.sort((a, b) => a[0] - b[0]).map(x => x[1])
+  if (seq.length < 2) continue
+  // kunci pola: hanya halte yang masuk planner (beberapa stop non-jaringan dilewati)
+  const idxSeq = seq.map(sid => plannerStopIdx.get(sid)).filter(x => x !== undefined)
+  if (idxSeq.length < 2) continue
+  if (!patternsByRoute.has(rid)) patternsByRoute.set(rid, new Map())
+  const pm = patternsByRoute.get(rid)
+  const key = idxSeq.join(',')
+  const hw = tripHeadway.get(tripId)
+  if (!pm.has(key)) pm.set(key, { stops: idxSeq, headway: hw })
+  else if (hw && (!pm.get(key).headway || hw < pm.get(key).headway)) pm.get(key).headway = hw
+}
+
+const plannerRoutes = []
+for (const [rid, pm] of patternsByRoute) {
+  const r = routeById.get(rid)
+  const cls = classify(r.route_desc)
+  const pats = [...pm.values()].map(p => ({
+    stops: p.stops,
+    ...(p.headway ? { hw: Math.round(p.headway / 60) } : {}),
+  }))
+  plannerRoutes.push({
+    id: rid,
+    name: r.route_short_name || rid,
+    color: `#${(r.route_color || 'e4572e').toLowerCase()}`,
+    brt: cls === 'BRT',
+    patterns: pats,
+  })
+}
+
+const planner = {
+  generatedAt: new Date().toISOString(),
+  stops: netStops.map(s => ({ id: s.id, name: s.name, lat: s.lat, lon: s.lon })),
+  routes: plannerRoutes,
+}
+writeFileSync(OUT_PLANNER, JSON.stringify(planner))
+const patTotal = plannerRoutes.reduce((a, r) => a + r.patterns.length, 0)
+console.log(`✅ ${OUT_PLANNER}`)
+console.log(`   ${plannerRoutes.length} rute, ${patTotal} pola, ${planner.stops.length} halte`)
 console.log(`✅ ${DB_PATH}`)
